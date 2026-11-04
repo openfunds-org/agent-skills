@@ -2,7 +2,7 @@
 
 ## openfunds standard, templates and schemas
 
-This plugin includes official openfunds Excel templates, field lists and machine-readable schemas, together with scripts and skills contributed by openfunds Active Members. Individual skills document their specific authorship and third-party notices in their respective skill directories.
+This repository includes official openfunds Excel templates, field lists and machine-readable schemas, together with scripts and skills contributed by openfunds Active Members. Individual skills document their specific authorship and third-party notices in their respective skill directories.
 
 All materials in this repository are released under the **Creative Commons Attribution-NoDerivatives 4.0 International Licence (CC BY-ND 4.0)**.
 
