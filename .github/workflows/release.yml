@@ -42,7 +42,11 @@ jobs:
               skill_name=$(basename "$skill_dir")
               mkdir -p "dist/$skill_name"
               cp -R "$skill_dir/." "dist/$skill_name/"
-              cp LICENSE NOTICE THIRD_PARTY_NOTICES.md "dist/$skill_name/"
+              for legal_file in LICENSE NOTICE THIRD_PARTY_NOTICES.md; do
+                if [ ! -f "dist/$skill_name/$legal_file" ] && [ -f "$legal_file" ]; then
+                  cp "$legal_file" "dist/$skill_name/"
+                fi
+              done
               (cd dist && zip -r "${skill_name}.zip" "$skill_name" && rm -rf "$skill_name")
             fi
           done

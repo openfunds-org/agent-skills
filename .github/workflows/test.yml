@@ -42,9 +42,13 @@ jobs:
           done
       - name: Check licence notices
         run: |
-          for target_dir in plugins/* plugins/*/skills/*; do
-            if [ -d "$target_dir" ] && [ -f "$target_dir/LICENSE" ]; then
-              cmp LICENSE "$target_dir/LICENSE"
+          cmp LICENSE plugins/openfunds-tools/LICENSE
+          cmp NOTICE plugins/openfunds-tools/NOTICE
+          cmp THIRD_PARTY_NOTICES.md plugins/openfunds-tools/THIRD_PARTY_NOTICES.md
+          for skill_dir in plugins/*/skills/*; do
+            if [ -d "$skill_dir" ]; then
+              test -f "$skill_dir/LICENSE"
+              test -f "$skill_dir/NOTICE"
             fi
           done
 

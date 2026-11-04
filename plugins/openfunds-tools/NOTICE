@@ -1,7 +1,7 @@
-openfunds Plugins and Skills
-Copyright 2026 openfunds e.V. and Titanbay Ltd
+openfunds Agent Skills and Tools
+Copyright 2026 openfunds e.V. and Active Member contributors
 
-The openfunds-tools plugin and openfunds-terms-and-conditions skill were developed by Titanbay in collaboration with the openfunds Private Markets Working Group for use with the openfunds Terms and Conditions (OFTC) extension.
+This plugin contains practical tools, validators and AI Agent Skills published by openfunds and its Active Members to support the implementation of the openfunds standard. Individual skills carry their own attribution notices in their respective skill directories.
 
 Released under the Creative Commons Attribution-NoDerivatives 4.0 International Licence (CC BY-ND 4.0). When redistributing this material in unaltered form, the source www.openfunds.org must be mentioned.
 

@@ -4,7 +4,7 @@
 
 Do not report security vulnerabilities or sensitive data exposure in public GitHub issues.
 
-Please report suspected security issues by emailing **businessoffice@openfunds.org** (and **security@titanbay.com** for issues relating to `openfunds-terms-and-conditions`). Include a description of the issue, the affected file or script, and steps to reproduce it.
+Please report suspected security issues by emailing **businessoffice@openfunds.org**. Include a description of the issue, the affected skill or script, and steps to reproduce it.
 
 ## Scope
 

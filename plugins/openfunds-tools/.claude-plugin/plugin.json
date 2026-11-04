@@ -4,7 +4,7 @@
   "description": "Tools and Agent Skills for creating, validating and reviewing openfunds data transmissions.",
   "version": "2.0.1",
   "author": {
-    "name": "Titanbay and openfunds"
+    "name": "openfunds and Active Members"
   },
   "homepage": "https://github.com/openfunds-org/agent-skills/tree/main/plugins/openfunds-tools",
   "repository": "https://github.com/openfunds-org/agent-skills",
