@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -uo pipefail
+
+blocked=0
+
+while IFS= read -r -d '' file; do
+  lower=$(printf '%s' "$file" | tr '[:upper:]' '[:lower:]')
+  case "$lower" in
+    *.pdf|*.docx|*.xlsx)
+      # Only permit official templates inside a skill's assets/ directory
+      if [[ ! "$file" =~ ^plugins/[^/]+/skills/[^/]+/assets/[^/]+\.xlsx$ ]]; then
+        printf 'Blocked public-repository document: %s\n' "$file" >&2
+        blocked=1
+      fi
+      ;;
+  esac
+done < <(git diff --cached --name-only --diff-filter=ACMR -z)
+
+if [[ "$blocked" -ne 0 ]]; then
+  printf 'Remove the file from the commit. Only approved .xlsx templates in plugins/*/skills/*/assets/ are permitted.\n' >&2
+  exit 1
+fi

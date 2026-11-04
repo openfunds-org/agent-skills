@@ -1,0 +1,22 @@
+name: Changelog and version guard
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    name: Check version bump, CHANGELOG and document guard
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+      - name: Fetch base branch
+        run: git fetch --no-tags origin ${{ github.base_ref }}
+      - name: Run version, changelog and document guard
+        run: python3 scripts/check_changelog.py origin/${{ github.base_ref }}

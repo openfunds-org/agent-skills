@@ -1,0 +1,22 @@
+{
+  "name": "openfunds-plugins",
+  "owner": {
+    "name": "openfunds",
+    "url": "https://www.openfunds.org"
+  },
+  "description": "Practical AI skills, validators and tools published by openfunds and its Active Members.",
+  "plugins": [
+    {
+      "name": "openfunds-tools",
+      "displayName": "openfunds tools",
+      "source": "./plugins/openfunds-tools",
+      "description": "Tools and skills for working with openfunds standards.",
+      "homepage": "https://github.com/openfunds-org/agent-skills/tree/main/plugins/openfunds-tools",
+      "repository": "https://github.com/openfunds-org/agent-skills",
+      "license": "CC-BY-ND-4.0",
+      "keywords": ["openfunds", "OFTC", "fund terms", "private markets"],
+      "category": "finance",
+      "tags": ["openfunds", "funds", "terms-and-conditions"]
+    }
+  ]
+}

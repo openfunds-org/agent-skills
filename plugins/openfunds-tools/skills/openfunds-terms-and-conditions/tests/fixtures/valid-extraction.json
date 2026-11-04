@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "fund_name": "Sample Umbrella - Sample Fund",
+    "source_file": "sample.pdf",
+    "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "schema_version": "2.14.0",
+    "skill_version": "2.0.0",
+    "status": "draft",
+    "document_scope": "binding",
+    "scope_evidence": "Test fixture represents an operative prospectus clause."
+  },
+  "open_questions": [],
+  "share_classes": [
+    {
+      "class_id": "SC-A",
+      "extension": "Class A",
+      "isin": "LU1135392162",
+      "currency": "EUR",
+      "open_questions": []
+    }
+  ],
+  "candidates": [
+    {
+      "candidate_id": "C-SAMPLE-GATE",
+      "location_type": "page",
+      "location": 1,
+      "category_hints": ["redemption_gate"],
+      "snippet": "Class A Shares are subject to a quarterly redemption gate. Aggregate redemptions are limited to 5% of the Fund NAV in each calendar quarter.",
+      "disposition": "mapped",
+      "reason": null,
+      "rule_ids": ["RULE-GATE-1"]
+    }
+  ],
+  "rules": [
+    {
+      "rule_id": "RULE-GATE-1",
+      "group_sources": ["C-SAMPLE-GATE"],
+      "applies_to": ["SC-A"],
+      "fields": {
+        "OFTC005010": "Share Class",
+        "OFTC005020": "Redemption gate",
+        "OFTC005030": "Redemption gate",
+        "OFTC005040": "5% quarterly redemption gate calculated against Fund NAV",
+        "OFTC005110": "Recurring Frequency",
+        "OFTC005120": "quarterly",
+        "OFTC005250": "Fund",
+        "OFTC005300": 0.05,
+        "OFTC005310": "Fund NAV"
+      },
+      "evidence": [
+        {
+          "candidate_id": "C-SAMPLE-GATE",
+          "location_type": "page",
+          "location": 1,
+          "quote": "Class A Shares are subject to a quarterly redemption gate. Aggregate redemptions are limited to 5% of the Fund NAV in each calendar quarter.",
+          "supports": [
+            "OFTC005010",
+            "OFTC005020",
+            "OFTC005030",
+            "OFTC005110",
+            "OFTC005120",
+            "OFTC005250",
+            "OFTC005300",
+            "OFTC005310"
+          ]
+        }
+      ],
+      "open_questions": [],
+      "notes": ["The 5% source percentage is stored as 0.05."]
+    }
+  ]
+}

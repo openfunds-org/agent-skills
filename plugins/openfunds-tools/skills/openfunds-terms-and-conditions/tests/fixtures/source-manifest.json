@@ -1,0 +1,11 @@
+{
+  "source_path": "/example/sample.pdf",
+  "source_file": "sample.pdf",
+  "source_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "source_type": "pdf",
+  "location_type": "page",
+  "locations": 1,
+  "unreadable_locations": [],
+  "extraction_method": "test-fixture",
+  "warnings": []
+}

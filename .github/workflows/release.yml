@@ -1,0 +1,52 @@
+name: Package release
+
+on:
+  push:
+    tags:
+      - "openfunds-tools-v*"
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: "3.11"
+      - run: pip install openpyxl pyyaml
+      - name: Validate marketplace, plugins and portable Agent Skills
+        run: python scripts/validate_plugins.py
+      - name: Run unit tests for all skills
+        run: |
+          for test_dir in plugins/*/skills/*/tests; do
+            if [ -d "$test_dir" ] && compgen -G "$test_dir/test*.py" > /dev/null; then
+              python -m unittest discover -s "$test_dir" -v
+            fi
+          done
+      - name: Check derived schemas where present
+        run: |
+          for skill_dir in plugins/*/skills/*; do
+            if [ -f "$skill_dir/scripts/build_schema.py" ]; then
+              (cd "$skill_dir" && python scripts/build_schema.py --check)
+            fi
+          done
+      - name: Package provider-neutral skill archives
+        run: |
+          mkdir -p dist
+          for skill_dir in plugins/*/skills/*; do
+            if [ -f "$skill_dir/SKILL.md" ]; then
+              skill_name=$(basename "$skill_dir")
+              mkdir -p "dist/$skill_name"
+              cp -R "$skill_dir/." "dist/$skill_name/"
+              cp LICENSE NOTICE THIRD_PARTY_NOTICES.md "dist/$skill_name/"
+              (cd dist && zip -r "${skill_name}.zip" "$skill_name" && rm -rf "$skill_name")
+            fi
+          done
+      - uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
+        with:
+          files: dist/*.zip
+          generate_release_notes: true
