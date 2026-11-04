@@ -1,0 +1,28 @@
+name: Restrict PRs to members and collaborators
+
+on:
+  pull_request_target:
+    types: [opened, reopened]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  check-author:
+    name: Close unsolicited external PRs
+    if: >-
+      github.event.pull_request.author_association != 'OWNER' &&
+      github.event.pull_request.author_association != 'MEMBER' &&
+      github.event.pull_request.author_association != 'COLLABORATOR'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment, close and lock PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh pr comment "$PR_NUMBER" --repo "$REPO" --body \
+            "Thank you for your interest in openfunds. Under our Creative Commons Attribution-NoDerivatives 4.0 (CC BY-ND 4.0) licence and governance policy, pull requests are restricted to invited openfunds Active Member maintainers. Please contact businessoffice@openfunds.org if you are an Active Member wishing to contribute a skill."
+          gh pr close "$PR_NUMBER" --repo "$REPO"
+          gh pr lock "$PR_NUMBER" --repo "$REPO" --reason resolved
